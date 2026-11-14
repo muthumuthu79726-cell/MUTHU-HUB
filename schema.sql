@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS admins (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admin_sessions (
+  id TEXT PRIMARY KEY,
+  admin_id INTEGER NOT NULL,
+  expires_at TEXT NOT NULL,
+  FOREIGN KEY (admin_id) REFERENCES admins(id)
+);
