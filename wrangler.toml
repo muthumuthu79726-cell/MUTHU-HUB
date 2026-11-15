@@ -1,0 +1,7 @@
+name = "muthu-hub"
+main = "functions/api/me.js"
+compatibility_date = "2026-11-15"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
