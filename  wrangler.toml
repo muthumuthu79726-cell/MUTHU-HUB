@@ -1,8 +1,0 @@
-name = "muthu-hub"
-pages_build_output_dir = "./"
-compatibility_date = "2024-11-01"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "muthuhubdb"
-database_id = "015cfb6d-0f7c-4050-9b19-656174e8f55d"
