@@ -5,16 +5,15 @@ function decodeBase64Url(value) {
   return Uint8Array.from(binary, c => c.charCodeAt(0));
 }
 
-export async function onRequest({ request, env }, next) {
+export async function onRequest(context) {
+  const { request, env } = context;
+
   try {
     const cookie = request.headers.get("Cookie") || "";
     const match = cookie.match(/(?:^|;\s*)muthu_admin_session=([^;]+)/);
 
     if (!match || !env.SESSION_SECRET) {
-      return Response.redirect(
-        new URL("/admin.html", request.url),
-        302
-      );
+      return Response.redirect(new URL("/admin.html", request.url), 302);
     }
 
     const parts = match[1].split(".");
@@ -51,8 +50,9 @@ export async function onRequest({ request, env }, next) {
       return Response.redirect(new URL("/admin.html", request.url), 302);
     }
 
-    return next();
+    return await context.next();
   } catch {
     return Response.redirect(new URL("/admin.html", request.url), 302);
   }
 }
+
