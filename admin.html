@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
@@ -35,6 +36,7 @@
       background: #16a34a;
       color: white;
       font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -43,11 +45,15 @@
     <h2>MUTHU HUB</h2>
     <h3>Admin Login</h3>
     <form>
-      <input type="password" placeholder="Admin Password" required>
-      <button type="button" onclick="alert('Login அமைப்பு இன்னும் இணைக்கப்படவில்லை')">
-        Login
-      </button>
+      <input
+        type="password"
+        placeholder="Admin Password"
+        autocomplete="current-password"
+        required
+      >
+      <button type="submit">Login</button>
     </form>
   </div>
+  <script src="/admin.js" defer></script>
 </body>
 </html>
