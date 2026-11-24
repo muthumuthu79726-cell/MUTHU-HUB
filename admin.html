@@ -1,59 +1,60 @@
 
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUTHU HUB - Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MUTHU HUB - Admin Panel</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #101827;
       color: white;
+      padding: 20px;
+    }
+    header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      min-height: 100vh;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .login {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
-      width: 85%;
-      max-width: 350px;
-      text-align: center;
-    }
-    input, button {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 13px;
-      margin-top: 15px;
-      border-radius: 8px;
-      border: none;
-    }
+    h1 { color: #60a5fa; }
     button {
-      background: #16a34a;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #dc2626;
       color: white;
-      font-size: 16px;
       cursor: pointer;
+    }
+    .panel {
+      margin-top: 25px;
+      padding: 22px;
+      background: #1e293b;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="login">
-    <h2>MUTHU HUB</h2>
-    <h3>Admin Login</h3>
-    <form>
-      <input
-        type="password"
-        placeholder="Admin Password"
-        autocomplete="current-password"
-        required
-      >
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  <script src="/admin.js" defer></script>
+  <header>
+    <h1>MUTHU HUB Admin Panel</h1>
+    <button id="logout">Logout</button>
+  </header>
+
+  <section class="panel">
+    <h2>நிர்வாகப் பகுதி</h2>
+    <p>வணக்கம்! MUTHU HUB Admin Panel-க்கு வரவேற்கிறோம்.</p>
+    <p>இங்கே பதிவுகள் மற்றும் உள்ளடக்கங்களை நிர்வகிக்கும் வசதிகள் விரைவில் சேர்க்கப்படும்.</p>
+  </section>
+
+  <script>
+    document.getElementById("logout").addEventListener("click", async () => {
+      await fetch("/api/logout");
+      window.location.href = "/admin.html";
+    });
+  </script>
 </body>
 </html>
