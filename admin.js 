@@ -1,8 +1,37 @@
+
 const form = document.querySelector("form");
 
 if (form) {
-  form.addEventListener("submit", function (event) {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    alert("MUTHU HUB Admin Login அமைப்பு தயாராகிறது!");
+
+    const passwordInput = form.querySelector('input[type="password"]');
+    const button = form.querySelector('button');
+    const password = passwordInput.value;
+
+    button.disabled = true;
+    button.textContent = "சரிபார்க்கிறது...";
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password })
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        window.location.href = "/admin/dashboard.html";
+      } else {
+        alert(result.message || "Login தோல்வியடைந்தது");
+      }
+    } catch {
+      alert("இணைய இணைப்பில் சிக்கல். மீண்டும் முயற்சிக்கவும்.");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Login";
+      passwordInput.value = "";
+    }
   });
 }
